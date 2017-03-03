@@ -75,7 +75,7 @@
 
 - (UIImage *)iconForItemByIndex:(NSInteger)index
 {
-    return [UIImage new];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%ld", index]];
 }
 
 

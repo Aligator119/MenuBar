@@ -50,35 +50,35 @@
     self.titleLabel = [view viewWithTag:111];
     self.iconImageView = [view viewWithTag:222];
     
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:view
-                                                                      attribute:NSLayoutAttributeLeft
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:self
-                                                                      attribute:NSLayoutAttributeLeft
-                                                                     multiplier:1.0 constant:0];
-    
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:view
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1.0f constant:0];
-    
-    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:view
-                                                                       attribute:NSLayoutAttributeRight
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self
-                                                                       attribute:NSLayoutAttributeRight
-                                                                      multiplier:1.0 constant:0];
-    
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:view
-                                                                        attribute:NSLayoutAttributeTop
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self
-                                                                        attribute:NSLayoutAttributeTop
-                                                                       multiplier:1.0f constant:0];
-    
-    [self addConstraints:@[leftConstraint, topConstraint, rightConstraint, bottomConstraint]];
+//    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:view
+//                                                                      attribute:NSLayoutAttributeLeft
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:self
+//                                                                      attribute:NSLayoutAttributeLeft
+//                                                                     multiplier:1.0 constant:0];
+//    
+//    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:view
+//                                                                     attribute:NSLayoutAttributeTop
+//                                                                     relatedBy:NSLayoutRelationEqual
+//                                                                        toItem:self
+//                                                                     attribute:NSLayoutAttributeTop
+//                                                                    multiplier:1.0f constant:0];
+//    
+//    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:view
+//                                                                       attribute:NSLayoutAttributeRight
+//                                                                       relatedBy:NSLayoutRelationEqual
+//                                                                          toItem:self
+//                                                                       attribute:NSLayoutAttributeRight
+//                                                                      multiplier:1.0 constant:0];
+//    
+//    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:view
+//                                                                        attribute:NSLayoutAttributeTop
+//                                                                        relatedBy:NSLayoutRelationEqual
+//                                                                           toItem:self
+//                                                                        attribute:NSLayoutAttributeTop
+//                                                                       multiplier:1.0f constant:0];
+//    
+//    [self addConstraints:@[leftConstraint, topConstraint, rightConstraint, bottomConstraint]];
     
     [self addSubview:view];
 }
