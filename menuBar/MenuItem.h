@@ -11,5 +11,6 @@
 @interface MenuItem : UIView
 
 - (void)setupItemWithTitle:(NSString *)title titleColor:(UIColor *)color icon:(UIImage *)icon;
+- (void)changeTitleFontSize:(float)fontSize;
 
 @end

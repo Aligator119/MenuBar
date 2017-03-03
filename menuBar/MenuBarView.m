@@ -37,19 +37,8 @@
 
 
 
+static NSInteger const kAnimationInterval = 1.5;
 
-struct MBItemPath {
-    CGFloat level;
-    CGFloat index;
-};
-typedef struct MBItemPath MBItemPath;
-
-static MBItemPath MBItemPathMake(int level, int index) {
-    MBItemPath path;
-    path.level = level;
-    path.index = index;
-    return path;
-}
 
 @interface MenuBarView ()
 
@@ -79,11 +68,14 @@ static MBItemPath MBItemPathMake(int level, int index) {
 }
 
 -(void)initializeSubviews {
-    //    UIView* view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class])
-    //                                                         owner:self
-    //                                                       options:nil] objectAtIndex:0];
-    //    view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    //    [self addSubview:view];
+    
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeAction:)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:leftSwipe];
+    
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeAction:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:rightSwipe];
     
     self.selectedItemIndex = 2;
     self.itemsList = [NSMutableArray new];
@@ -115,6 +107,7 @@ static MBItemPath MBItemPathMake(int level, int index) {
 {
     CGRect resultRect = CGRectMake(0, 0, 0, 0);
     CGPoint centerPoint = CGPointMake(0, 0);
+    float fontSize = 8.0;
     switch (index - self.selectedItemIndex) {
         case -2:
             resultRect = CGRectMake(0, 0, kSmallItemWidth, kSmallItemHigth);
@@ -124,16 +117,19 @@ static MBItemPath MBItemPathMake(int level, int index) {
         case -1:
             resultRect = CGRectMake(0, 0, kMidleItemWidth, kMidleItemHight);
             centerPoint = CGPointMake(kLeftMidleItemX, kMidleItemY);
+            fontSize = 11.0;
             break;
             
         case 0:
             resultRect = CGRectMake(0, 0, kBigItemWidth, kBigItemHight);
             centerPoint = CGPointMake(self.frame.size.width / 2, kBigItemHight / 2);
+            fontSize = 13.0;
             break;
             
         case 1:
             resultRect = CGRectMake(0, 0, kMidleItemWidth, kMidleItemHight);
             centerPoint = CGPointMake(kRightMidleItemX, kMidleItemY);
+            fontSize = 11.0;
             break;
             
         case 2:
@@ -144,12 +140,44 @@ static MBItemPath MBItemPathMake(int level, int index) {
     
     item.frame = resultRect;
     item.center = centerPoint;
+    [item changeTitleFontSize:fontSize];
 }
 
 - (void)pressedMenuItem:(UITapGestureRecognizer *)recognizer
 {
     self.selectedItemIndex = [recognizer view].tag;
     NSLog(@"TAPPED ITEM - %ld", (long)self.selectedItemIndex);
+}
+
+- (void)leftSwipeAction:(UISwipeGestureRecognizer *)recognizer
+{
+    [self shiftAnimationLeftOnPosition:1];
+}
+
+- (void)rightSwipeAction:(UISwipeGestureRecognizer *)recognizer
+{
+    
+}
+
+#pragma mark - Animations
+- (void)shiftAnimationLeftOnPosition:(NSInteger)count
+{
+//    for (int i = 0; i < count; i++) {
+//        <#statements#>
+//    }
+    NSMutableArray *newList = [NSMutableArray new];
+    
+    for (MenuItem *item in self.itemsList) {
+        if ([item isEqual:self.itemsList.firstObject]) {
+            [UIView animateWithDuration:0.75 animations:^{
+                item.frame = CGRectMake(- 30, self.frame.size.height + 30, item.frame.size.width, item.frame.size.height);
+            } completion:^(BOOL finished) {
+                item.frame = CGRectMake(self.frame.size.width + 30, self.frame.size.height + 30, item.frame.size.width, item.frame.size.height);
+                
+            }];
+        }
+    }
+    
 }
 
 @end

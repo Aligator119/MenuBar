@@ -47,6 +47,8 @@
                                                   owner:self
                                                 options:nil] objectAtIndex:0];
     view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    self.titleLabel = [view viewWithTag:111];
+    self.iconImageView = [view viewWithTag:222];
     
     NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:view
                                                                       attribute:NSLayoutAttributeLeft
@@ -88,6 +90,12 @@
     self.titleLabel.textColor = color;
     self.titleLabel.text = title;
     self.iconImageView.image = icon;
+}
+
+
+- (void)changeTitleFontSize:(float)fontSize
+{
+    self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
 }
 
 
